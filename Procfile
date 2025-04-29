@@ -1,0 +1,1 @@
+start: python3 keemia_bot_nalja_pärast.py
