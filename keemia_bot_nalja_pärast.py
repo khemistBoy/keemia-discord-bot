@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 
+BOT_TOKEN = "MTM2NjUwMDg0Nzg5MDA3NTcwMA.GDePXD.rfa_4fsMt1qTDOF4uZavKCRplRWXGzqLKkuTDw" 
+CHANNEL_ID = 1366509155455602782
+
 intents = discord.Intents.default()
 intents.message_content = True
 
