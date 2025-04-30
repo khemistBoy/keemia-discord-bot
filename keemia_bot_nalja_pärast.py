@@ -12,14 +12,15 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 class ChemicalElement:
-    def __init__(self, element, number, symbol, weight, boil, melt, density_vapour, fusion):
+    def __init__(self, element, number, symbol, weight, boil, melt, density, vapour, fusion):
         self.element = element
         self.number = number
         self.symbol = symbol
         self.weight = weight
         self.boil = boil
         self.melt = melt
-        self.density_vapour = density_vapour
+        self.density = density
+        self.vapour = vapour
         self.fusion = fusion
 
     def __str__(self):
@@ -29,7 +30,8 @@ class ChemicalElement:
                 f"Weight: {self.weight}\n"
                 f"Boil: {self.boil}\n"
                 f"Melt: {self.melt}\n"
-                f"Density vapour: {self.density_vapour}\n"
+                f"Density: {self.density}\n"
+                f"vapour: {self.vapour}\n"
                 f"Fusion: {self.fusion}")
 
 class ChemicalElementService:
@@ -41,7 +43,7 @@ class ChemicalElementService:
         elements_dict = {}
         with open("elements.csv", "r", encoding="utf-8") as f:
             data = [line.strip(",\n").split(",") for line in f.readlines()[1:]]
-        fields = ["element", "number", "symbol", "weight", "boil", "melt", "density_vapour", "fusion"]
+        fields = ["element", "number", "symbol", "weight", "boil", "melt", "density", "vapour", "fusion"]
         for row in data:
             while len(row) < len(fields):
                 row.append("NaN")
@@ -83,7 +85,7 @@ class ChemicalElementService:
                 if data["symbol"] == element:
                     chemical_element = ChemicalElement(
                         name, data["number"], data["symbol"], data["weight"],
-                        data["boil"], data["melt"], data["density_vapour"], data["fusion"]
+                        data["boil"], data["melt"], data["density"], data["vapour"], data["fusion"]
                     )
                     info_list.append(str(chemical_element))
         return info_list
