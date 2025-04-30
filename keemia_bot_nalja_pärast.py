@@ -128,16 +128,13 @@ def text_to_list(user_request):
 
 
 @bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user}!')
-    channel = bot.get_channel(CHANNEL_ID)
-    await channel.send("The bot is now online!")
-
-@bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
-    
+
+    if message.channel.id != CHANNEL_ID:
+        return
+
     user_request = message.content.strip()
     parsed_list = text_to_list(user_request)
     service = ChemicalElementService(parsed_list)
